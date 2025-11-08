@@ -3,18 +3,31 @@ import time
 
 def jogo_busca_binaria ():
     
+    print("\n==============================================")
+    print("  JOGO 1: O COMPUTADOR TENTA ADIVINHAR")
+    print("==============================================")
+    print("Pense em um número inteiro entre 0 e 128.")
+    print("Eu terei 7 tentativas para adivinhar.")
+    print("Responda com 'sim' ou 'nao'.")
+    print("----------------------------------------------")
+    
+    time.sleep(2)
+    
     limite_inferior = 0 
     limite_superior = 128 
     tentativa_atual = 0 
+    max_tentativas = 7
     acertou = False
     
     print("Pense em um número inteiro entre 0 e 128")
 
-    while True: 
+    while tentativa_atual < max_tentativas: 
         tentativa_atual += 1 
+        print(f"\nTentativa {tentativa_atual} de {max_tentativas}...")
         
-        if (tentativa_atual == 7): 
-            print("Desculpa, não consegui adivinhar após 6 tentativas.")
+        if limite_inferior > limite_superior: 
+            print("\nOpa! Parece que suas respostas foram inconsistentes.")
+            acertou = True 
             break
 
         palpite = (limite_inferior+limite_superior)// 2
@@ -35,6 +48,7 @@ def jogo_busca_binaria ():
            resposta_maior = ""
            while resposta_maior not in ["sim", "nao"]: 
                resposta_maior = input(f"O número {palpite} é MAIOR que o seu? (sim/nao) ").strip().lower()
+               
                if resposta_maior not in  ["sim", "nao"]: 
                    print("Resposta inválida. Por favor, digite 'sim' ou 'nao'.")
                 
@@ -76,6 +90,9 @@ def jogo_numero_secreto ():
         
     tentativa = 1 
     acertou = False 
+    
+    print(f"\nCerto! Você tem {numero_tentativa} tentativas. Valendo {pontos} pontos!")
+    print("----------------------------------------------")
     
     while tentativa <= numero_tentativa: 
         print(f"Tentativa {tentativa} de {numero_tentativa}")
