@@ -1,5 +1,5 @@
 import random
-
+import time
 
 def jogo_busca_binaria ():
     a = 0 
@@ -82,6 +82,41 @@ def jogo_numero_secreto ():
     else: 
         print("Você perdeu! tente novamente \n")
         print(f"O número secreto era {numero_secreto}")
+        
+def main():
+   #Função principal que exibe o menu e gerencia a escolha do jogo.
+   
+    while True: 
+        print("\n======================================")
+        print(" BEM-VINDO AO MENU DE JOGOS ")
+        print("======================================")
+        print("Escolha seu jogo:")
+        print("(1) Eu adivinho seu número (Busca Binária)")
+        print("(2) Você adivinha meu número (Número Secreto)")
+        print("(0) Sair do programa")
+        print("--------------------------------------")
+        
+        escolha = input("Digite sua opção (1, 2 ou 0): " ).strip()
+        
+        if escolha == "1": 
+            jogo_busca_binaria()
+        elif escolha == "2":
+            jogo_numero_secreto
+        elif escolha == "0":
+            print("\nObrigado por jogar! Até a próxima. ")
+            break
+        else:
+            print("\nOpção inválida! Por favor, escolha 1, 2 ou 0.")
+            time.sleep(1.5)
+            
+# --- Ponto de entrada do programa ---
+# Verifica se este script está sendo executado diretamente
+if __name__ == "__main__":
+    main()
+            
+         
+        
+    
     
         
     
