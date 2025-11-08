@@ -2,10 +2,12 @@ import random
 import time
 
 def jogo_busca_binaria ():
+    
     a = 0 
     b = 128 
     t = 0 
-
+    acertou = False
+    
     print("Pense em um número inteiro entre 0 e 128")
 
     while True: 
@@ -16,19 +18,41 @@ def jogo_busca_binaria ():
             break
 
         m = (a+b)// 2
-        resposta = input(f"O número que você pensou é {m}? (responda 'sim' ou 'nao') ")
-
-        if (resposta == "sim"): 
-            print(f"O número é {m} e eu adivinhei em {t} tentativas! ")
-            break
-
-        else: 
-            resposta = input(f"O número {m} é MAIOR que o seu? (responda 'sim' ou 'nao') ")
+        
+        resposta_acerto = " "
+        while resposta_acerto not in ["sim", "nao"]: 
+            resposta_acerto = input (f"O número que você pensou é {m}? (sim/nao) ").strip().lower()
             
-            if(resposta == "sim"):
-                b = m 
-            else: 
-                a = m 
+            if resposta_acerto  not in ["sim", "nao"]: 
+                print("Resposta inválida. Por favor, digite 'sim' ou 'nao'.")
+    
+        if (resposta_acerto == "sim"):
+            print(f"\nEba! O número é {m} e eu adivinhei em {t} tentativas! ")
+            acertou = True
+            break
+        else: 
+        # --- Validação da resposta 'maior' ---
+           resposta_maior = ""
+           while resposta_maior not in ["sim", "nao"]: 
+               resposta_maior = input(f"O número {m} é MAIOR que o seu? (sim/nao) ").strip().lower()
+               if resposta_maior not in  ["sim", "nao"]: 
+                   print("Resposta inválida. Por favor, digite 'sim' ou 'nao'.")
+                
+        if(resposta_maior == "sim"):
+            b = m - 1 
+        else: 
+            a = m - 1  
+            
+    if not acertou:
+        print("\nAh, parece que não consegui adivinhar em 7 tentativas.")
+        print("Vamos jogar de novo?")
+
+    print("----------------------------------------------")
+    input("Pressione Enter para voltar ao menu...")
+             
+                
+                
+                
                 
 def jogo_numero_secreto ():
 
