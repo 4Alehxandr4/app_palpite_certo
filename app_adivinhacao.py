@@ -154,7 +154,7 @@ def main():
         if escolha == "1": 
             jogo_busca_binaria()
         elif escolha == "2":
-            jogo_numero_secreto
+            jogo_numero_secreto()
         elif escolha == "0":
             print("\nObrigado por jogar! Até a próxima. ")
             break
