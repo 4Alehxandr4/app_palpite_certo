@@ -3,45 +3,45 @@ import time
 
 def jogo_busca_binaria ():
     
-    a = 0 
-    b = 128 
-    t = 0 
+    limite_inferior = 0 
+    limite_superior = 128 
+    tentativa_atual = 0 
     acertou = False
     
     print("Pense em um número inteiro entre 0 e 128")
 
     while True: 
-        t += 1 
+        tentativa_atual += 1 
         
-        if (t == 7): 
+        if (tentativa_atual == 7): 
             print("Desculpa, não consegui adivinhar após 6 tentativas.")
             break
 
-        m = (a+b)// 2
+        palpite = (limite_inferior+limite_superior)// 2
         
         resposta_acerto = " "
         while resposta_acerto not in ["sim", "nao"]: 
-            resposta_acerto = input (f"O número que você pensou é {m}? (sim/nao) ").strip().lower()
+            resposta_acerto = input (f"O número que você pensou é {palpite}? (sim/nao) ").strip().lower()
             
             if resposta_acerto  not in ["sim", "nao"]: 
                 print("Resposta inválida. Por favor, digite 'sim' ou 'nao'.")
     
         if (resposta_acerto == "sim"):
-            print(f"\nEba! O número é {m} e eu adivinhei em {t} tentativas! ")
+            print(f"\nEba! O número é {palpite} e eu adivinhei em {tentativa_atual} tentativas! ")
             acertou = True
             break
         else: 
         # --- Validação da resposta 'maior' ---
            resposta_maior = ""
            while resposta_maior not in ["sim", "nao"]: 
-               resposta_maior = input(f"O número {m} é MAIOR que o seu? (sim/nao) ").strip().lower()
+               resposta_maior = input(f"O número {palpite} é MAIOR que o seu? (sim/nao) ").strip().lower()
                if resposta_maior not in  ["sim", "nao"]: 
                    print("Resposta inválida. Por favor, digite 'sim' ou 'nao'.")
                 
         if(resposta_maior == "sim"):
-            b = m - 1 
+            limite_superior = palpite - 1 
         else: 
-            a = m - 1  
+            limite_inferior = palpite - 1  
             
     if not acertou:
         print("\nAh, parece que não consegui adivinhar em 7 tentativas.")
