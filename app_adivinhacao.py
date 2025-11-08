@@ -48,64 +48,76 @@ def jogo_busca_binaria ():
         print("Vamos jogar de novo?")
 
     print("----------------------------------------------")
-    input("Pressione Enter para voltar ao menu...")
-             
-                
-                
+    input("Pressione Enter para voltar ao menu...")                    
                 
                 
 def jogo_numero_secreto ():
 
     numero_secreto = random.randint(1,100) 
+    numero_tentativa = 0
+    pontos = 1000 
+    nivel = 0 
 
-    chute = 0 
-    acertou = 0 
-    pontos = 100 
 
-
-    nivel = int(input(f"Qual o nível de dificuldade?\nEscolha: (1) Fácil (2) Médio (3) Difícil\n"))
-
+    while nivel not in [1, 2, 3]: 
+        try: 
+            nivel = int(input(f"Qual o nível de dificuldade?\n(1) Fácil (20 tent.) (2) Médio (15 tent.) (3) Difícil (6 tent.)\nEscolha: "))
+            if nivel not in [1, 2, 3]:
+                print("Opção inválida. Digite 1, 3 ou 3.")
+        except ValueError: 
+            print("Entrada inválida. Por favor, digite um NÚMERO (1, 2 ou 3)")
 
     if(nivel == 1):
-        num_tentativa = 20
+        numero_tentativa = 20
     if(nivel == 2): 
-        num_tentativa = 15 
+        numero_tentativa = 15 
     if(nivel == 3): 
-        num_tentativa = 6
+        numero_tentativa = 6
         
     tentativa = 1 
-
-
-    while tentativa <= num_tentativa: 
-        print(f"Tentativa {tentativa} de {num_tentativa}")
-        chute = int(input("Qual o seu chute: "))
+    acertou = False 
+    
+    while tentativa <= numero_tentativa: 
+        print(f"Tentativa {tentativa} de {numero_tentativa}")
+        
+        chute = 0 
+        try: 
+            chute = int(input("Qual o seu chute (entre 1 e 100): "))
+        except ValueError: 
+             print("Entrada inválida. Você deve digitar um NÚMERO.")
+             continue
+        
         print(f"Seu chute foi {chute}")
         
         if(chute < 0 or chute > 100): 
             print("Você deve chutar um número entre 1 e 100. Tente novamente.")
             continue 
         
-        tentativa += 1 
-        
-        acertou = chute == numero_secreto
-        
-        pontos_perdidos = abs(chute - numero_secreto)
-        pontos = pontos - pontos_perdidos
+        acertou = (chute == numero_secreto)
         
         if(acertou):
             break 
-        elif(chute > numero_secreto):
-            print("Você errou!\n Dica: o número secreto é MENOR")
-        elif(chute < numero_secreto):
-            print("Você errou!\n Dica: o número secreto é MAIOR")
+        
+        else: 
+            pontos_perdidos = abs(chute - numero_secreto)
+            pontos = pontos - pontos_perdidos
+            
+            if(chute > numero_secreto):
+                print("Você errou!\n Dica: o número secreto é MENOR")
+            if(chute < numero_secreto):
+                print("Você errou!\n Dica: o número secreto é MAIOR")
+        
+        tentativa += 1
         
     if(acertou): 
-        print(f"Você acertou na tentativa {tentativa - 1}°\n")
-        print(f"Total de pontos: {pontos}") 
-
-    else: 
-        print("Você perdeu! tente novamente \n")
+        print(f"\nParabéns! Você acertou na {tentativa}ª tentativa!")
+        print(f"Total de pontos: {pontos}")
+    else:
+        print("\nVocê perdeu! Suas tentativas acabaram.")
         print(f"O número secreto era {numero_secreto}")
+    
+    print("----------------------------------------------")
+    input("Pressione Enter para voltar ao menu...")
         
 def main():
    #Função principal que exibe o menu e gerencia a escolha do jogo.
