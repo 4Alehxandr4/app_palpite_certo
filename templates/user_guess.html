@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Você adivinha</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Tente adivinhar o número!</h1>
+        <form method="POST">
+            <input type="number" name="palpite" placeholder="Seu palpite" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        {% if resultado %}
+            <p class="resultado">{{ resultado }}</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="voltar">⬅ Voltar</a>
+    </div>
+</body>
+</html>
