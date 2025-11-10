@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Computador adivinha</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Computador vai adivinhar!</h1>
+
+        {% if not palpite and not fim %}
+            <form method="POST">
+                <input type="number" name="numero_usuario" placeholder="Digite um número (1-100)" required>
+                <button type="submit">Começar</button>
+            </form>
+        {% elif fim %}
+            <p class="resultado">{{ mensagem }}</p>
+            <a href="{{ url_for('computer_guess') }}" class="btn">Jogar novamente</a>
+        {% else %}
+            <p class="resultado">{{ mensagem }}</p>
+            <form method="POST">
+                <button type="submit" name="resposta" value="maior">Meu número é maior</button>
+                <button type="submit" name="resposta" value="menor">Meu número é menor</button>
+                <button type="submit" name="resposta" value="acertou">Acertou!</button>
+            </form>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="voltar">⬅ Voltar</a>
+    </div>
+</body>
+</html>

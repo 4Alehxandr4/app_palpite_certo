@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Palpite Certo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Palpite Certo</h1>
+        <p>Escolha um modo de jogo:</p>
+        <div class="buttons">
+            <a href="{{ url_for('user_guess') }}" class="btn">Eu quero adivinhar</a>
+            <a href="{{ url_for('computer_guess') }}" class="btn">Computador adivinha</a>
+        </div>
+    </div>
+</body>
+</html>
